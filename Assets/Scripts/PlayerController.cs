@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+using TMPro;
+using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     public Animator animator;
     public float speed;
-    public float jump;
-     private Rigidbody2D rb2d;
-    
+    [SerializeField]
+    private Rigidbody2D rb2d;
+    public bool isCrouching;
+    public bool isGrounded = false;
+    public float jumpSpeed;
     private void Awake()
     {
         rb2d = gameObject.GetComponent<Rigidbody2D>();
@@ -26,8 +30,9 @@ public class PlayerController : MonoBehaviour
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
       
-       MoveCharacter(horizontal,vertical);
-       PlayerMovementAnimation(horizontal, vertical);
+         MoveCharacter(horizontal,vertical);
+         PlayerMovementAnimation(horizontal, vertical);
+                     
     }
     private void MoveCharacter(float horizontal, float vertical)
         {
@@ -36,16 +41,17 @@ public class PlayerController : MonoBehaviour
             
                             // Speed = d/t(in sec) * (1(sec)/ 30 or whatever fps) 
 
-            position.x +=  horizontal * speed * Time.deltaTime;
+            position.x +=  horizontal * speed * Time.deltaTime;                                 // p = p + s * t
             transform.position = position;
 
             //vertical movement
             
-            if (vertical > 0)
+            if (vertical > 0 && isGrounded==true)
             {
-            rb2d.AddForce(new Vector2(0f, jump), ForceMode2D.Force);
+             rb2d.velocity = new Vector2(rb2d.velocity.x, jumpSpeed);
             }
-        }
+    
+    }
 
 
     private void PlayerMovementAnimation(float horizontal, float vertical)
@@ -72,8 +78,20 @@ public class PlayerController : MonoBehaviour
        {
           animator.SetTrigger("Jump");
        }
-                   
-    
+
+        // crouch
+         if (Input.GetKeyDown(KeyCode.S))
+        {
+            animator.SetBool("Crouch", true);
+            isCrouching = true;
+        }
+        else if (Input.GetKeyUp(KeyCode.S))
+        {
+            animator.SetBool("Crouch", false);
+            isCrouching = false;
+        }
+
+
     }
 
       
