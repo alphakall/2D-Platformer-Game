@@ -4,36 +4,20 @@ using UnityEngine;
 
 public class GroundDetector : MonoBehaviour
 {
-    PlayerController PlyrCntrlr;
+    
+    [SerializeField] private LayerMask platformLayerMask;
 
-    // Start is called before the first frame update
+    public bool isGrounded;
 
-    GameObject Player;
 
-    void Start()
-    {
-        Player = gameObject.transform.parent.gameObject;
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        void OnCollisionEnter2D(Collision2D collision)
+       private void OnTriggerStay2D(Collider2D collider)
         {
-            if (collision.gameObject.tag == "Ground")
-            {
-                Player.GetComponent<PlayerController>().isGrounded = true;
-
-            }
+            isGrounded=collider != null && (((1<<collider.gameObject.layer) & platformLayerMask)!=0);
         }
-        void OnCollisionExit2D(Collision2D collision)
+        void OnTriggerExit2D(Collider2D collision)
         {
-            if (collision.gameObject.tag == "Ground")
-            {
-                Player.GetComponent<PlayerController>().isGrounded = false;
-
-            }
+            isGrounded = false;
         }
-    }
+    
 }
