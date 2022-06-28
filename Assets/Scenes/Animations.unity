@@ -153,7 +153,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 50
+  m_Mass: 25
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -175,7 +175,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.11475587, y: 0.982857}
+  m_Offset: {x: 0.015550613, y: 0.982857}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.42, y: 0.1}
@@ -186,7 +186,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.92686415, y: 2.1003585}
+  m_Size: {x: 0.97179794, y: 2.1003585}
   m_EdgeRadius: 0
 --- !u!114 &315469997
 MonoBehaviour:
@@ -204,7 +204,7 @@ MonoBehaviour:
   speed: 7
   rb2d: {fileID: 315469995}
   isCrouching: 0
-  jumpSpeed: 15
+  jumpSpeed: 30
   platfromLayerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -624,12 +624,12 @@ PrefabInstance:
     - target: {fileID: 3499197550997424881, guid: db7f1941d05cbec4287b573e20db7858,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.374016
+      value: -6.147
       objectReference: {fileID: 0}
     - target: {fileID: 3499197550997424881, guid: db7f1941d05cbec4287b573e20db7858,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.6535432
+      value: -1.716
       objectReference: {fileID: 0}
     - target: {fileID: 3499197550997424881, guid: db7f1941d05cbec4287b573e20db7858,
         type: 3}
